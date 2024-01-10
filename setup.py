@@ -1,20 +1,8 @@
-#!/usr/bin/env python
-
-# Dependencies
-from setuptools import setup
-
-raise Exception("Please make sure you have modified all necessary attributes before pip installing the package")
+from setuptools import find_packages, setup
 
 setup(
-    name="new_project",
-    version="0.01",
-    description="",
-    author="",
-    author_email="",
-    url="",
-    packages=[],
-    # inlcude_package_data=True,
-    # package_data={'package.module':[folder/with/data/*]}
-    # scripts=[],
+    name="download-manager",
+    version="0.1.0",
+    packages=find_packages(include=["downloading_files"]),
     install_requires=[],
 )

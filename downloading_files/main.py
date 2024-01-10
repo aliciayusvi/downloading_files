@@ -1,16 +1,16 @@
 import asyncio
 import logging
 
-from .config import get_config
 from .download_manager import DownloadManager
+from .parser import get_config
 
 
 def main() -> None:
-    # configurar el nivel a partir del que se muestra infomación en los logs
+    # configurar el nivel a partir del que se muestra infomacion en los logs
     logging.basicConfig(level=logging.INFO)
 
-    # modificar el máximo de tareas simultáneas de la configuración
-    config = get_config(part_size=1024*1024, max_concurrent_jobs=10)
+    # modificar el maximo de tareas simultáneas de la configuracion
+    config = get_config()
 
     # instanciar el coordinador
     dlmanager = DownloadManager(config)

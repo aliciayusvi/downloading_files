@@ -23,7 +23,7 @@ class DownloadManager:
             self._file_size = await self.client.get_file_size(self.config.source)
         return self._file_size
 
-    # obtener el número de partes a dividir el archivo
+    # obtener el numero de partes a dividir el archivo
     # el número depende del tamaño del archivo y del tamaño de las partes especificado
     # en la configuracion
     async def get_parts_count(self) -> int:
@@ -32,11 +32,11 @@ class DownloadManager:
         parts = math.ceil(file_size / self.config.part_size)
         return parts
 
-    # función que obtiene los datos de la parte a descargar
-    # devuelve una tupla con el índice y los datos
+    # funcion que obtiene los datos de la parte a descargar
+    # devuelve una tupla con el indice y los datos
     async def download_part(self, part_index: int) -> tuple[int, bytes]:
-        # semáforo que da luz verde para que se ejecuten las tareas
-        # cuando hay menos tareas en ejecución que el límite (max_concurrent_jobs)
+        # semaforo que da luz verde para que se ejecuten las tareas
+        # cuando hay menos tareas en ejecucion que el límite (max_concurrent_jobs)
         async with self.semaphore:
             source = self.config.source
             start = part_index * self.config.part_size
@@ -52,11 +52,11 @@ class DownloadManager:
             f.seek(start)
             f.write(data)
 
-    # realizar descargas con una función asíncrona
+    # realizar descargas con una funcion asíncrona
     async def download(self) -> None:
         logger.info(f"Starting download for file {self.config.source}")
         logger.info(f"Downloading to {self.config.destination}")
-        # calcular el número de partes
+        # calcular el numero de partes
         parts = await self.get_parts_count()
         logger.info(f"Dividing in {parts} parts")
         # preparar la lista con todas las tareas
